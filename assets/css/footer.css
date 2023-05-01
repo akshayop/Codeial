@@ -1,0 +1,19 @@
+body footer {
+  display: flex;
+  align-items: start;
+  color: white;
+  background-color: gray;
+}
+body footer h3 {
+  padding-left: 1rem;
+}
+body footer h3 span i {
+  color: black;
+}
+body footer ul {
+  list-style-type: none;
+  font-size: 1.3rem;
+}
+body footer ul a {
+  color: white;
+}

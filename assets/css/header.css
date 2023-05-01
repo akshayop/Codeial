@@ -1,0 +1,27 @@
+body header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(4, 113, 191);
+}
+body header #logo {
+  font-family: sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  padding-left: 3rem;
+}
+body header ul {
+  display: flex;
+  margin: 1rem;
+  font-size: 1.5rem;
+  list-style-type: none;
+}
+body header ul li a {
+  margin-left: 1rem;
+  color: white;
+  transition: 0.5s transform;
+}
+body header ul li:hover {
+  transform: scale(1.3);
+}

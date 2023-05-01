@@ -1,0 +1,17 @@
+#home-container {
+    display: flex;
+
+    #feed-posts {
+        width: 70%;
+        padding: 1rem;
+    }
+
+    #user-friends {
+        width: 30%;
+        height: 100;
+        padding: 1rem;
+        border-left: 1px solid gainsboro;
+        
+        
+    }
+}

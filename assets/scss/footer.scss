@@ -1,0 +1,26 @@
+body {
+    footer {
+        display: flex;
+        align-items:start;
+        color: white;
+        background-color: gray;
+
+        h3 {
+            padding-left: 1rem;
+            span {
+                i {
+                    color: black;
+                }
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            font-size: 1.3rem;
+
+            a {
+                color: white;
+            }
+        }
+    }
+}
