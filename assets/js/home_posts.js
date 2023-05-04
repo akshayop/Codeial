@@ -17,6 +17,14 @@
                     for(i of newPost) {
                         deletePost($(' .delete-post-btn', newPost));
                     }
+
+                    new Noty({
+                        theme: 'relax',
+                        text: "Post Published!.....",
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 1500 
+                    }).show();
                 }, error: function(error) {
                     console.log(error.responseText);
                 }
