@@ -12,15 +12,13 @@
                 data: newPostForm.serialize(),
                 success: function(data) {
                     let newPost = newPostDom(data.data.post);
+                    
                     $('#post-controller>ul').prepend(newPost);
-
-                    for(i of newPost) {
-                        deletePost($(' .delete-post-btn', newPost));
-                    }
+                    deletePost($(' .delete-post-btn', newPost));
 
                     new Noty({
                         theme: 'relax',
-                        text: "Post Published!.....",
+                        text: "Post Published!",
                         type: 'success',
                         layout: 'topRight',
                         timeout: 1500 
@@ -83,12 +81,28 @@
                 url: $(deleteLink).prop('href'),
                 success: function(data) {
                     $(`#post-${data.data.post_id}`).remove();
+
+                    new Noty({
+                        theme: 'relax',
+                        text: "Post Deleted!",
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 1500 
+                    }).show();
                 }, error: function(error) {
                     console.log(error.responseText)
                 }
             })
         })
     } 
+    
+    let allPost = $('#post-controller > ul > li');
+
+    for(let i of allPost) {
+        deletePost($(' .delete-post-btn', i));
+    }
 
     createPost();
 }
+
+
