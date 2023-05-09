@@ -11,14 +11,30 @@ module.exports.create = async (req, res) => {
                 content: req.body.content,
                 post: req.body.post,
                 user: req.user._id
-            });
-            
+            })
+
+           
+       
             post.comments.push(comment);
             post.save();
+
+            if(req.xhr) {
+
+                comment = await comment.populate('user', 'name');
+
+                return res.status(200).json({
+                    data: {
+                        comment: comment
+                    },
+                    message: "commented to the post"
+                });
+            }
 
             req.flash('success', 'commeted to the Post!')
             res.redirect('back');
         }
+
+        
     }catch(err) {
         req.flash('error', err)
         return res.redirect('back');
@@ -40,6 +56,16 @@ module.exports.destroy = async (req, res) => {
 
             // update the comments in postSchema    
             await Post.findByIdAndUpdate(postId, { $pull: {comments: req.params.id}});
+
+            if(req.xhr) {
+
+                return res.status(200).json({
+                    data: {
+                        comment_id: req.params.id
+                    },
+                    message: "commented Delete"
+                });
+            }
             return res.redirect('back');
             
         }

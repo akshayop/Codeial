@@ -12,9 +12,14 @@
                 data: newPostForm.serialize(),
                 success: function(data) {
                     let newPost = newPostDom(data.data.post);
-                    
-                    $('#post-controller>ul').prepend(newPost);
+
+                    $(' #post-controller>ul').prepend(newPost);
+
+                    // to delete post from DOM this will work created post
                     deletePost($(' .delete-post-btn', newPost));
+
+                     // call the create comment class from home_post_comment.js
+                    new PostComments(data.data.post._id);
 
                     new Noty({
                         theme: 'relax',
@@ -27,6 +32,8 @@
                     console.log(error.responseText);
                 }
             });
+
+            
             $('#content').val('');
         });
     }
@@ -52,9 +59,9 @@
                     </p>
                 
                     <div id="post-comments">                            
-                        <form action="/comments/create" method="POST">
+                        <form id="post-${post._id}-comments-form" action="/comments/create" method="POST">
                             <input type="text" name="content" placeholder="Type some Comments here......" required>
-                            <input type="hidden" name="post" value="${post._id}>
+                            <input type="hidden" name="post" value="${post._id}">
                             <input type="submit" value="Add Comments">
                         </form>
             
@@ -96,10 +103,20 @@
         })
     } 
     
+     // for traverse all li from DOM " #posts-list-container > ul >li"
     let allPost = $('#post-controller > ul > li');
 
-    for(let i of allPost) {
-        deletePost($(' .delete-post-btn', i));
+    for(let post of allPost) {
+         // to delete post from DOM
+        // console.log($(' .delete-post-button', post," 1"));
+        deletePost($(' .delete-post-btn', post));
+
+         // get the post's id by splitting the id attribute
+         let postId = $(post).prop('id').split("-")[1];
+        //  console.log($(post).prop('id').split("-")[1]);
+
+        
+         new PostComments(postId);
     }
 
     createPost();
