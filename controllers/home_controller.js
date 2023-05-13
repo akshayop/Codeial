@@ -14,7 +14,6 @@ module.exports.home = async (req, res) => {
                 path: 'user'
             }
         })
-        .exec();
 
         let users = await User.find({});
                     
