@@ -71,7 +71,7 @@ module.exports.signIn = (req, res) => {
         return res.redirect('/users/profile')
     }
 
-    res.render('user_sign_in', {
+    return res.render('user_sign_in', {
         title: 'Codeial | Sign In'
     });
 }
