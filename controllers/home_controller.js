@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const User = require('../models/user');
+const Friendship = require('../models/friendship');
 
 module.exports.home = async (req, res) => {
 
@@ -20,13 +21,39 @@ module.exports.home = async (req, res) => {
         }).populate('comments')
         .populate('likes')
 
-        let users = await User.find({});
+        if(req.isAuthenticated()){
+            let users = await User.find({});
+            let user = await User.findById(req.user._id)
+            .populate({
+                path: 'friendships',
+                populate: {
+                    path: 'from_user to_user',
+                }
+            })
+
+
+            let friends = await  user.friendships;
+            // let friends = await user.populate('friendships');
+            // console.log(friends)
+            return res.render('home', {
+                title: "posts",
+                subtitle: "Home",
+                posts: posts,
+                all_users: users,
+                friends: friends
+            });
+
+        }else{
+            let users = await User.find({});
                     
-        return res.render('home', {
-            title: 'codeial | Home',
-            posts: posts,
-            all_users: users  
-        });
+            return res.render('home', {
+                title: 'codeial | Home',
+                posts: posts,
+                all_users: users  
+            });
+        }
+
+        
     }catch(err) {
         console.log('error', err);
         return;
