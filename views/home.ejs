@@ -88,7 +88,7 @@
 
 <!-- import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
 
-<script src="js/toggle_likes"></script>
+<script src="/js/toggle_likes.js"></script>
 
 <script>
     $('.toggle-like-btn').each( () => {
@@ -102,6 +102,6 @@
 
 <% if(locals.user) {%>
     <script>
-        new chatEngine('user-chat-box', '<%= locals.user._id %>')
+        new ChatEngine('user-chat-box', '<%= locals.user.email %>')
     </script>
 <% } %>
