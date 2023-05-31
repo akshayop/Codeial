@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const env = require('./environment')
 
-const db = mongoose.connect('mongodb://127.0.0.1:27017/codeialDevelopment');
+const db = mongoose.connect(`mongodb://127.0.0.1:27017/${env.db}`);
 
 db.then( () => {
         console.log("successfully connected to mongodb");

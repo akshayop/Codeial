@@ -91,7 +91,8 @@
 <script src="/js/toggle_likes.js"></script>
 
 <script>
-    $('.toggle-like-btn').each( () => {
+    $('.toggle-like-btn').each( function() {
+        console.log(ele, 'wjg', pqr);
         let self = this;
         let toggleLike = new ToggleLike(self);
     });
