@@ -2,7 +2,8 @@ const express = require('express');
 const env = require('./config/environment');
 const cookieParser = require('cookie-parser');
 const app = express();
-const port = 8000;
+console.log(env.development.port);
+const port =  9000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 // Used for session cookies
@@ -26,7 +27,7 @@ app.use(express.urlencoded());
 
 app.use(cookieParser());
 
-app.use(express.static(env.asset_path));
+app.use(express.static(env.development.asset_path));
 
 // Make the upload path available to browser
 app.use('/uploads', express.static(__dirname + '/uploads'));
@@ -49,7 +50,7 @@ app.set('views', './views');
 app.use(session({
     name: 'codeial',
     // TODO change the secret before deployment in production mode
-    secret: env.session_cookie_key,
+    secret: env.development.session_cookie_key,
     saveUninitialized: false,
     resave: false,
     cookie: {

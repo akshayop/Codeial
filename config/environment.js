@@ -23,8 +23,6 @@ const development = {
     jwt_secret: 'codeial'
 }
 
-const production = {
-    name: 'production'
-}
 
-module.exports = development
+
+module.exports = {development}

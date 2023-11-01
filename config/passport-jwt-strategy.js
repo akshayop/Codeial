@@ -8,7 +8,7 @@ const env = require('./environment');
 
 let opts = {
     jwtFromRequest: ExtractJwt .fromAuthHeaderAsBearerToken(),
-    secretOrKey: env.jwt_secret
+    secretOrKey: env.development.jwt_secret
 }
 
 
